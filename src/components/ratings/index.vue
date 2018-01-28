@@ -1,12 +1,18 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" @click="random">
     this is ratings page
   </div>
 </template>
 
 <script>
+import { str, arr } from '../../net'
 export default {
-  name: 'ratings'
+  name: 'ratings',
+  methods: {
+    random () {
+      console.log(str + arr)
+    }
+  }
 }
 </script>
 
