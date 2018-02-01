@@ -1,16 +1,27 @@
 <template>
   <div class="wrapper">
-    <div> this is wrapper</div>
-    <goods></goods>
-    <ratings></ratings>
-    <seller></seller>
+    <topper></topper>
+    <ul>
+      <li>
+        <router-link to="/goods">商品</router-link>
+      </li>
+      <li>
+        <router-link to="/ratings">评价</router-link>
+      </li>
+      <li>
+        <router-link to="/seller">商家</router-link>
+      </li>
+    </ul>
+    <div class="content">
+      <router-view></router-view>
+    </div>
+    <shopping-car></shopping-car>
   </div>
 </template>
 
 <script>
-import Goods from './goods/index'
-import Ratings from './ratings/index'
-import Seller from './seller/index'
+import Topper from './goods/topper'
+import ShoppingCar from './shoppingCar/index'
 export default {
   name: 'Home',
   data () {
@@ -18,12 +29,27 @@ export default {
     }
   },
   components: {
-    Goods,
-    Ratings,
-    Seller
+    Topper, ShoppingCar
   }
 }
 </script>
 
 <style scoped lang="stylus">
+ @import '../assets/common/common.styl'
+  .wrapper
+    ul
+      display :flex
+      align-items :center
+      justify-content :center
+      border-1px(rgba(7,17,27,.1))
+      li
+        flex :1
+        text-align :center
+        font-size:.28rem
+        line-height :.8rem
+        height :.8rem
+        a
+          color:rgb(77,85,93)
+        .router-link-active
+          color:rgb(240,20,20)
 </style>
