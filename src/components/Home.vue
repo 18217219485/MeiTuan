@@ -15,13 +15,11 @@
     <div class="content">
       <router-view></router-view>
     </div>
-    <shopping-car></shopping-car>
   </div>
 </template>
 
 <script>
 import Topper from './goods/topper'
-import ShoppingCar from './shoppingCar/index'
 export default {
   name: 'Home',
   data () {
@@ -29,7 +27,7 @@ export default {
     }
   },
   components: {
-    Topper, ShoppingCar
+    Topper
   }
 }
 </script>

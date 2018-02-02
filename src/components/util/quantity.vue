@@ -19,6 +19,7 @@ export default {
   methods: {
     addQuantity () {
       this.count++
+      this.$emit('showCount', this.count)
     },
     reduceQuantity () {
       this.count--

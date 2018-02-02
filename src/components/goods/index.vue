@@ -23,34 +23,38 @@
               </div>
               <p class="rmb">¥12 <span class="originRmb">¥28</span></p>
             </div>
-            <quantity></quantity>
+            <quantity @showCount="showCount"></quantity>
           </li>
         </ul>
       </div>
     </div>
+    <shopping-car :count="count"></shopping-car>
   </div>
 </template>
 
 <script>
 import Quantity from '../util/quantity'
+import ShoppingCar from '../shoppingCar/index'
 export default {
   name: 'goods',
   data () {
     return {
+      count: null,
       hotList: [11, 22, 33, 44, 55, 66, 77, 88, 99],
       detailList: [11, 22, 33, 44, 99, 66]
     }
   },
-  components: {Quantity},
+  components: {Quantity, ShoppingCar},
   methods: {
     goDetail (index) { // 直接用点击click事件，让当前的index元素添加类名，vue的短板
       let menuList = this.$refs.list
       menuList.map((v, i) => {
         v.classList.remove('active')
-        if (index === i) {
-          v.classList.add('active')
-        }
+        if (index === i) v.classList.add('active')
       })
+    },
+    showCount (obj) {
+      this.count = obj
     }
   }
 }

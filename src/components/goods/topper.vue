@@ -21,7 +21,7 @@
         <p>5个 ></p>
       </div>
     </div>
-    <div class="announcement" @click="showDetail = !showDetail">
+    <div class="announcement" @click="showDialog">
       <div class="bulletin"></div>
       <p>粥品香坊其烹饪粥料的秘方源于中国千年古法，再融合现代的烹饪技术</p>
       <i></i>
@@ -35,6 +35,7 @@
 <script>
 import LossDialog from 'vux/src/components/x-dialog/index'
 import DiscountDetail from './discountDetail'
+const objBody = document.getElementsByTagName('body')[0]
 export default {
   name: 'topper',
   data () {
@@ -46,8 +47,14 @@ export default {
     LossDialog, DiscountDetail
   },
   methods: {
+    showDialog () {
+      this.showDetail = true
+      objBody.style.height = '100%'
+      objBody.style.overflow = 'hidden'
+    },
     closeDialog (obj) {
       this.showDetail = obj
+      objBody.style.overflow = 'auto'
     }
   }
 }

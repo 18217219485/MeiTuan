@@ -25,24 +25,48 @@
     </div>
     <div class="interval"></div>
     <div class="content">
-      <div class="satisfaction">
-        <div>
-          <span>全部</span>
-        </div>
-        <div></div>
+      <div class="addLine">
+        <rating-type></rating-type>
       </div>
-      <ul class="remark"></ul>
+      <ul class="customer-remark">
+        <li class="remarkItem" v-for="item in remarkData" :key="item">
+          <img src="" alt="" class="avtor">
+          <div class="right">
+            <div class="baseInfor">
+              <div class="leftBase">
+                <p>吴大红***</p>
+                <div>
+                  <star :size=36 :score=6></star>
+                  <span>80分钟送达</span>
+                </div>
+              </div>
+              <span>2017-09-23 08:30</span>
+            </div>
+            <p class="text">干活土豆儿片挺好吃，味道很不错，今天海特意点了鱼香肉丝，味道也是杠杠滴，没有那么甜</p>
+            <ul class="review">
+              <span class="icon-thumb_up icon-thumb_down"></span>
+              <li class="reviewItem">干锅土豆片</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 import Star from '../util/star'
+import RatingType from './ratingType'
 export default {
   name: 'ratings',
+  data () {
+    return {
+      remarkData: [11, 22, 33, 44, 55]
+    }
+  },
   methods: {},
   components: {
-    Star
+    Star, RatingType
   }
 }
 </script>
@@ -83,13 +107,52 @@ export default {
           margin :.16rem 0
         >p
          margin-right :.12rem
-  .interval
-    width :100%
-    height: .36rem
-    background-color :rgba(7,17,27,.1)
-    border-top:2px solid rgba(0,0,0,.1)
-    border-bottom:2px solid rgba(0,0,0,.1)
   .content
-    .satisfaction
+    .addLine
+      border-bottom :1px solid rgba(7,17,27,.1)
+    .customer-remark
       margin :0 .36rem
+      .remarkItem
+        padding :.36rem 0 .36rem .8rem
+        border-1px(rgba(7,17,27,.1))
+        position :relative
+        .avtor
+          position :absolute
+          left :0
+          width :.56rem
+          height :.56rem
+          border-radius :50%
+          border: 1px solid red
+        .right
+          .baseInfor
+            display :flex
+            justify-content :space-between
+            font-size:.2rem
+            color :rgb(147,153,159)
+            .leftBase
+              div
+                 display :flex
+                 justify-content :center
+                 margin :.06rem 0 .12rem
+          .text
+            font-size:.24rem
+            color:rgb(7,17,27)
+          .review
+            display :flex
+            align-items :center
+            margin-top:.16rem
+            span
+              font-size:.24rem
+              margin-right:.16rem
+              &.icon-thumb_up
+                color:rgb(0,160,220)
+              &.icon-thumb_down
+               color:rgb(183,187,191)
+            .reviewItem
+               padding :.06rem .12rem
+               border-width :1px
+               border-color:rgba(7,17,27,.1)
+               border-radius :4px
+               border-style:solid
+               margin-right:.16rem
 </style>

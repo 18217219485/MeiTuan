@@ -1,5 +1,5 @@
 <template>
-  <div class="discount-wrapper" :style="{height:h}">
+  <div class="discount-wrapper">
     <div class="title">
       <p class="name">粥品香坊（大运村）</p>
       <star :size = 48 :score= 4.8></star>
@@ -58,10 +58,6 @@ export default {
     Star
   },
   computed: {
-    h () {
-      let h = document.documentElement.clientHeight
-      return h + 'px'
-    }
   },
   methods: {
     close () {
@@ -72,6 +68,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-  @import '../../assets/common/common.styl'
-  @import '../../assets/stylus/discountDetail.styl'
+@import '../../assets/common/common.styl'
+@import '../../assets/stylus/discountDetail.styl'
 </style>

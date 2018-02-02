@@ -1,0 +1,92 @@
+.seller-wrapper
+  .titleName
+    font-size:.28rem
+    color:rgb(7,17,27)
+    line-height :1
+  .baseInformation
+    margin :0 .36rem
+    >div
+      display :flex
+      justify-content :space-between
+      padding :.36rem 0
+      border-1px(rgba(7,17,27,.1))
+      .sellerName
+        >div
+          display :flex
+          margin-top:.16rem
+          font-size:.2rem
+          color:rgb(77,85,93)
+          .special
+            margin :0 .24rem 0 .16rem
+      .collect
+        div
+          font-size:.48rem
+          color:rgba(7,17,27,.2)
+          text-align :center
+          margin-top: -.08rem
+        div.collected
+          color:rgb(240,20,20)
+        span
+          font-size:.06rem
+    >ul
+      padding :.36rem 0
+      display :flex
+      text-align :center
+      li
+        flex:1
+        p:first-child
+          font-size:.2rem
+          color:rgb(147,153,159)
+        p:nth-child(2)
+          font-size:.48rem
+          color:rgb(7,17,27)
+          >span
+            font-size:.2rem
+  .activity
+    margin :0 .36rem
+    .titleName
+      margin :.36rem 0 .16rem 0
+    .text
+      padding-left:.24rem
+      font-size:.24rem
+      color:rgb(240,20,20)
+      line-height :2
+      padding-bottom:.32rem
+      border-1px(rgba(7,17,27,.1))
+    .activityList
+      .activityItem
+        padding :.36rem .24rem
+        font-size:.24rem
+        color:rgb(7,17,27)
+        line-height :1.2
+        border-1px(rgba(7,17,27,.1))
+        display :flex
+        >span
+          display :block
+          width :.32rem
+          height :.32rem
+          background-size:.32rem .32rem
+          background-repeat :no-repeat
+          margin-right:.12rem
+          &.decrease
+            bg-img("../../assets/image/decrease_1")
+          &.discount
+            bg-img("../../assets/image/discount_1")
+          &.invoice
+            bg-img("../../assets/image/invoice_1")
+          &.guarantee
+            bg-img("../../assets/image/guarantee_1")
+          &.special
+            bg-img("../../assets/image/special_1")
+  .sellerInformation
+    margin :0 .36rem
+    .titleName
+      padding:.36rem 0 .24rem 0
+      border-1px(rgba(7,17,27,.1))
+    .sellerList
+      .sellerItem
+        padding :.32rem .24rem
+        border-1px(rgba(7,17,27,.1))
+        font-size:.24rem
+        color:rgb(7,17,27)
+        line-height :1.5
