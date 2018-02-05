@@ -13,7 +13,7 @@
         </div>
         <ul class="food">
           <li>
-            <img src="" alt="">
+            <img src="" alt="" @click="goodsDetail">
             <div class="description">
               <p class="title">莲子核桃黑米粥</p>
               <p class="rate" style="display: none">咸粥</p>
@@ -22,6 +22,7 @@
                 <span>好评率100%</span>
               </div>
               <p class="rmb">¥12 <span class="originRmb">¥28</span></p>
+              <span>加入购物车</span>
             </div>
             <quantity @showCount="showCount"></quantity>
           </li>
@@ -29,22 +30,25 @@
       </div>
     </div>
     <shopping-car :count="count"></shopping-car>
+    <goods-detail v-show="showGoodsDetail"></goods-detail>
   </div>
 </template>
 
 <script>
 import Quantity from '../util/quantity'
 import ShoppingCar from '../shoppingCar/index'
+import GoodsDetail from './goodsDetail'
 export default {
   name: 'goods',
   data () {
     return {
       count: null,
       hotList: [11, 22, 33, 44, 55, 66, 77, 88, 99],
-      detailList: [11, 22, 33, 44, 99, 66]
+      detailList: [11, 22, 33, 44, 99, 66],
+      showGoodsDetail: false
     }
   },
-  components: {Quantity, ShoppingCar},
+  components: {Quantity, ShoppingCar, GoodsDetail},
   methods: {
     goDetail (index) { // 直接用点击click事件，让当前的index元素添加类名，vue的短板
       let menuList = this.$refs.list
@@ -55,6 +59,9 @@ export default {
     },
     showCount (obj) {
       this.count = obj
+    },
+    goodsDetail () {
+      this.showGoodsDetail = true
     }
   }
 }

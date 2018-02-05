@@ -35,6 +35,7 @@ export default {
 <style scoped lang="stylus">
  @import '../assets/common/common.styl'
   .wrapper
+    position :relative
     ul
       display :flex
       align-items :center

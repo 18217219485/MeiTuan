@@ -4,6 +4,7 @@ import Home from '../components/Home'
 import Goods from '../components/goods/index'
 import Seller from '../components/seller/index'
 import Ratings from '../components/ratings/index'
+import GoodsDetail from '../components/goods/goodsDetail'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/ratings',
       name: 'Ratings',
       component: Ratings
+    },
+    {
+      path: '/goodsDetail',
+      name: 'GoodsDetail',
+      component: GoodsDetail
     }
   ]
 })

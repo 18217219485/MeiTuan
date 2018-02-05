@@ -150,9 +150,7 @@ export default {
                color:rgb(183,187,191)
             .reviewItem
                padding :.06rem .12rem
-               border-width :1px
-               border-color:rgba(7,17,27,.1)
-               border-radius :4px
-               border-style:solid
                margin-right:.16rem
+               border: 1px solid rgba(7,17,27,.1)
+               border-radius :4px
 </style>

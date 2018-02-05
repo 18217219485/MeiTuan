@@ -62,11 +62,7 @@
     <div class="interval"></div>
     <div class="scenes">
       <p class="titleName">商家实景</p>
-      <ul class="pictureList">
-        <li class="pictureItem">
-          <img src="" alt="">
-        </li>
-      </ul>
+      <picture-swiper></picture-swiper>
     </div>
     <div class="interval"></div>
     <div class="sellerInformation">
@@ -82,6 +78,7 @@
 
 <script>
 import Star from '../util/star'
+import PictureSwiper from './item'
 export default {
   name: 'seller',
   data () {
@@ -91,7 +88,7 @@ export default {
       sellerData: [11, 22, 33, 44]
     }
   },
-  components: {Star},
+  components: {Star, PictureSwiper},
   methods: {
   }
 }
