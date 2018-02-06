@@ -24,7 +24,7 @@
     <div class="announcement" @click="showDialog">
       <div class="bulletin"></div>
       <p>粥品香坊其烹饪粥料的秘方源于中国千年古法，再融合现代的烹饪技术</p>
-      <i></i>
+      <i class="icon-keyboard_arrow_right"></i>
     </div>
     <transition name="fade">
       <discount-detail v-show="showDetail" @closeDialog="closeDialog"></discount-detail>
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import LossDialog from 'vux/src/components/x-dialog/index'
 import DiscountDetail from './discountDetail'
 const objBody = document.getElementsByTagName('body')[0]
 export default {
@@ -44,7 +43,7 @@ export default {
     }
   },
   components: {
-    LossDialog, DiscountDetail
+    DiscountDetail
   },
   methods: {
     showDialog () {

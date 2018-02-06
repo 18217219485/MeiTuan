@@ -1,36 +1,42 @@
 <template>
-  <div class="goods-wrapper">
-    <ul class="hotList">
-      <li v-for="(item,index) in hotList" :key="index" @click="goDetail(index)" ref="list">
-        <p>红烧{{item}}</p>
-        <span class="line"></span>
-      </li>
-    </ul>
-    <div class="listDetail">
-      <div class="item" v-for="item in detailList" :key="item">
-        <div class="name">
-          <p>单人特色套餐</p>
-        </div>
-        <ul class="food">
-          <li>
-            <img src="" alt="" @click="goodsDetail">
-            <div class="description">
-              <p class="title">莲子核桃黑米粥</p>
-              <p class="rate" style="display: none">咸粥</p>
-              <div class="rate">
-                <span>月售1132份</span>
-                <span>好评率100%</span>
+  <div>
+    <div class="goods-wrapper">
+      <ul class="hotList">
+        <scroller ref="hotswiper">
+        <li v-for="(item,index) in hotList" :key="index" @click="goDetail(index)" ref="list">
+          <p>红烧{{item}}</p>
+          <span class="line"></span>
+        </li>
+        </scroller>
+      </ul>
+      <div class="listDetail">
+        <scroller ref="detailscroller">
+        <div class="item" v-for="item in detailList" :key="item">
+          <div class="name">
+            <p>单人特色套餐</p>
+          </div>
+          <ul class="food">
+            <li>
+              <img src="" alt="" @click="goodsDetail">
+              <div class="description">
+                <p class="title">莲子核桃黑米粥</p>
+                <p class="rate" style="display: none">咸粥</p>
+                <div class="rate">
+                  <span>月售1132份</span>
+                  <span>好评率100%</span>
+                </div>
+                <p class="rmb">¥12 <span class="originRmb">¥28</span></p>
+                <span>加入购物车</span>
               </div>
-              <p class="rmb">¥12 <span class="originRmb">¥28</span></p>
-              <span>加入购物车</span>
-            </div>
-            <quantity @showCount="showCount"></quantity>
-          </li>
-        </ul>
+              <quantity @showCount="showCount"></quantity>
+            </li>
+          </ul>
+        </div>
+        </scroller>
       </div>
+      <shopping-car :count="count"></shopping-car>
     </div>
-    <shopping-car :count="count"></shopping-car>
-    <goods-detail v-show="showGoodsDetail"></goods-detail>
+    <goods-detail v-show="showGoodsDetail" @closeGoodsDetail="closeGoodsDetail"></goods-detail>
   </div>
 </template>
 
@@ -62,6 +68,9 @@ export default {
     },
     goodsDetail () {
       this.showGoodsDetail = true
+    },
+    closeGoodsDetail (obj) {
+      this.showGoodsDetail = obj
     }
   }
 }

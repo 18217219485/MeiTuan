@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import Topper from './goods/topper'
+import Topper from './components/topper/index'
 export default {
-  name: 'Home',
+  name: 'App',
   data () {
     return {
     }
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
- @import '../assets/common/common.styl'
+ @import 'assets/common/common.styl'
   .wrapper
     position :relative
     ul

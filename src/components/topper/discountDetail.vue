@@ -1,5 +1,5 @@
 <template>
-  <div class="discount-wrapper">
+  <div class="discount-wrapper" :style={height:h}>
     <div class="title">
       <p class="name">粥品香坊（大运村）</p>
       <star :size = 48 :score= 4.8></star>
@@ -58,6 +58,10 @@ export default {
     Star
   },
   computed: {
+    h () {
+      let h = document.documentElement.clientHeight
+      return h + 'px'
+    }
   },
   methods: {
     close () {

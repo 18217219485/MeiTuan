@@ -1,5 +1,6 @@
 <template>
   <div class="seller-wrapper">
+    <scroller>
     <div class="baseInformation">
       <div>
         <div class="sellerName titleName">
@@ -73,6 +74,7 @@
         </li>
       </ul>
     </div>
+    </scroller>
   </div>
 </template>
 
