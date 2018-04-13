@@ -1,8 +1,8 @@
 <template>
   <div class="discount-wrapper" :style={height:h}>
     <div class="title">
-      <p class="name">粥品香坊（大运村）</p>
-      <star :size = 48 :score= 4.8></star>
+      <p class="name">{{sellerData.name}}</p>
+      <star :size = 48 :score= sellerData.foodScore></star>
     </div>
     <div class="discountInformation">
       <div class="header">
@@ -10,26 +10,10 @@
         <p>优惠信息</p>
         <span class="line"></span>
       </div>
-      <ul class="content">
+      <ul class="content" v-for="(item,index) in sellerData.supports" :key="index">
         <li>
           <span class="decrease"></span>
-          <p>在线支付满28减5，满50减10</p>
-        </li>
-        <li>
-          <span class="discount"></span>
-          <p>在线支付满28减5，满50减10</p>
-        </li>
-        <li>
-          <span class="invoice"></span>
-          <p>在线支付满28减5，满50减10</p>
-        </li>
-        <li>
-          <span class="guarantee"></span>
-          <p>在线支付满28减5，满50减10</p>
-        </li>
-        <li>
-          <span class="special"></span>
-          <p>在线支付满28减5，满50减10</p>
+          <p>{{item.description}}</p>
         </li>
       </ul>
     </div>
@@ -40,8 +24,7 @@
         <span class="line"></span>
       </div>
       <p class="content">
-        粥品香坊其烹饪粥料的秘方源于中国千年古法，在融合现代制作工艺，由世界烹饪大师屈浩先生领先制发。坚守纯天然，无添加腐化剂，深得消费者青睐
-        发展至今已经成为粥类引领品牌，是2008年奥运会和2013年园博会的指定餐饮服务商
+        {{sellerData.bulletin}}
       </p>
     </div>
     <div class="close" @click="close">
@@ -54,6 +37,7 @@
 import Star from '../util/star'
 export default {
   name: 'discount-detail',
+  props: ['sellerData'],
   components: {
     Star
   },

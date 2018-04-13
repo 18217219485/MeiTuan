@@ -1,9 +1,9 @@
 <template>
     <div class="swiper-wrapper">
-      <swiper>
+      <swiper :option="swiperOption">
         <div class="swiper-container">
-          <swiper-slide v-for="item in pictureData" :key="item" >
-            <img src="" alt="" class="swiper-item">
+          <swiper-slide v-for="(item,index) in pictureData" :key="index" >
+            <img :src="item" alt="" class="swiper-item">
           </swiper-slide>
         </div>
       </swiper>
@@ -16,9 +16,14 @@ export default {
   name: 'item',
   data () {
     return {
-      pictureData: [11, 22, 33, 44, 55, 31, 66, 77],
-      swiperOption: {}
+      swiperOption: {
+        autoplay: true,
+        mousewheelControl: true
+      }
     }
+  },
+  props: {
+    pictureData: Array
   },
   components: {swiper, swiperSlide}
 }

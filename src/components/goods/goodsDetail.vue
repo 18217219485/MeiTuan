@@ -2,44 +2,42 @@
     <div class="goodsDetail">
       <scroller>
         <div class="baseInformation">
-          <img src="" alt="">
+          <img :src="goodsDetail.image">
           <i class="icon-arrow_lift" @click="back"></i>
           <div class="saleInformation">
-            <p>皮蛋瘦肉粥</p>
-            <p>月售1132份  好评率100%</p>
+            <p>{{goodsDetail.name}}</p>
+            <p>月售{{goodsDetail.sellCount}}份  好评率{{goodsDetail.rating}}%</p>
             <div>
-              <p class="rmb">¥12 <span class="originRmb">¥28</span></p>
+              <p class="rmb">¥{{goodsDetail.price}} <span class="originRmb" v-show="goodsDetail.oldPrice">¥{{goodsDetail.oldPrice}}</span></p>
               <span>加入购物车</span>
             </div>
           </div>
         </div>
-        <div class="interval"></div>
-        <div class="goodsIntroduction">
+        <div class="interval" v-show="goodsDetail.info"></div>
+        <div class="goodsIntroduction" v-show="goodsDetail.info">
           <p class="title">商品介绍</p>
           <p class="content">
-            一碗皮蛋瘦肉粥，总是我到店里的不二之选，香浓软骨，饱腹暖心，让人觉得喝这一碗粥也觉得心满意足,
-            一碗皮蛋瘦肉粥，总是我到店里的不二之选，香浓软骨，饱腹暖心，让人觉得喝这一碗粥也觉得心满意足,
-            一碗皮蛋瘦肉粥，总是我到店里的不二之选，香浓软骨，饱腹暖心，让人觉得喝这一碗粥也觉得心满意足
+            {{goodsDetail.info}}
           </p>
         </div>
         <div class="interval"></div>
         <div class="goodsMark">
-          <rating-type>
+          <rating-type :ratings="goodsDetail.ratings" @select = "select" :onlyText = "onlyText" @toggle = "toggle">
             <p class="title" style="paddingTop:.36rem;font-size: .28rem">商品评价</p>
           </rating-type>
           <div class="line"></div>
           <ul class="remarkContent">
-            <li class="remarkItem" v-for =" item in remarkList" :key="item">
+            <li class="remarkItem" v-for =" (item,index) in selectRating" :key="index">
               <div class="above">
-                <p>2016-07-07</p>
+                <p>{{item.rateTime}}</p>
                 <div class="right">
-                  <span>2*****6</span>
-                  <img src="" alt="">
+                  <span>{{item.username}}</span>
+                  <img :src="item.avatar">
                 </div>
               </div>
               <div class="detailContent">
-                <span class="icon-thumb_up"></span>
-                <p>太少了，不够一个人吃,希望下次可以菜量大一点</p>
+                <span :class="item.rateType === 0 ?'icon-thumb_up' : 'icon-thumb_down'"></span>
+                <p>{{item.text}}</p>
               </div>
             </li>
           </ul>
@@ -54,13 +52,32 @@ export default {
   name: 'goods-detail',
   data () {
     return {
-      remarkList: [11, 22, 33, 44, 55]
+      selectRating: '',
+      onlyText: false
     }
+  },
+  props: {
+    goodsDetail: Object
+  },
+  mounted () {
+    this.selectRating = this.goodsDetail.ratings
   },
   components: {RatingType},
   methods: {
     back () {
       this.$emit('closeGoodsDetail', false)
+    },
+    select (data) {
+      this.onlyText = false
+      this.selectRating = data
+    },
+    toggle () {
+      this.onlyText = !this.onlyText
+      if (this.onlyText) {
+        this.selectRating = this.selectRating.filter(item => {
+          return item.text !== ''
+        })
+      }
     }
   }
 }

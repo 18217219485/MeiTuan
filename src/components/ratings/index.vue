@@ -27,26 +27,26 @@
       <div class="interval"></div>
       <div class="content">
         <div class="addLine">
-          <rating-type></rating-type>
+          <rating-type :ratings="ratings" @select="select" :onlyText="onlyText" @toggle = "toggle"></rating-type>
         </div>
         <ul class="customer-remark">
-          <li class="remarkItem" v-for="item in remarkData" :key="item">
-            <img src="" alt="" class="avtor">
+          <li class="remarkItem" v-for="(items,index) in selectRating" :key="index">
+            <img :src="items.avatar" alt="" class="avtor">
             <div class="right">
               <div class="baseInfor">
                 <div class="leftBase">
-                  <p>吴大红***</p>
+                  <p>{{items.username}}</p>
                   <div>
-                    <star :size=36 :score=6></star>
-                    <span>80分钟送达</span>
+                    <star :size=36 :score=items.score></star>
+                    <span v-show="items.deliveryTime">{{items.deliveryTime}}分钟送达</span>
                   </div>
                 </div>
-                <span>2017-09-23 08:30</span>
+                <span>{{dateData(items.rateTime)}}</span>
               </div>
-              <p class="text">干活土豆儿片挺好吃，味道很不错，今天海特意点了鱼香肉丝，味道也是杠杠滴，没有那么甜</p>
+              <p class="text">{{items.text}}</p>
               <ul class="review">
-                <span class="icon-thumb_up icon-thumb_down"></span>
-                <li class="reviewItem">干锅土豆片</li>
+                <span :class="items.rateType === 0 ? 'icon-thumb_up':'icon-thumb_down'"></span>
+                <li class="reviewItem" v-for="(item,index) in items.recommend" :key="index">{{item}}</li>
               </ul>
             </div>
           </li>
@@ -59,17 +59,46 @@
 <script>
 import Star from '../util/star'
 import RatingType from './ratingType'
+import {mapState} from 'vuex'
+import {handleData} from '../util/common'
 export default {
   name: 'ratings',
   data () {
     return {
-      remarkData: [11, 22, 33, 44, 55]
+      selectRating: '',
+      onlyText: false
     }
   },
-  methods: {},
-  components: {
-    Star, RatingType
-  }
+  computed: {
+    ...mapState({
+      ratings: 'ratings'
+    })
+  },
+  mounted () {
+    this.initData()
+    this.selectRating = this.ratings
+  },
+  methods: {
+    initData () {
+      this.$store.dispatch('initRatings', this)
+    },
+    dateData (value) {
+      return handleData.switchDate(value)
+    },
+    select (data) {
+      this.onlyText = false
+      this.selectRating = data
+    },
+    toggle () {
+      this.onlyText = !this.onlyText
+      if (this.onlyText) {
+        this.selectRating = this.selectRating.filter(item => {
+          return item.text !== ''
+        })
+      }
+    }
+  },
+  components: {Star, RatingType}
 }
 </script>
 

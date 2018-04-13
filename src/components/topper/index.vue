@@ -2,15 +2,15 @@
   <div class="m-header">
     <div class="topper">
       <div class="logo">
-        <img />
+        <img :src="sellerData.avatar" />
       </div>
       <div class="main">
         <div class="brand">
           <div class="brand-image"></div>
-          <p>粥品香坊（大运村）</p>
+          <p>{{sellerData.name}}</p>
         </div>
         <div class="send">
-          <p>蜂鸟专送/38分钟送达</p>
+          <p>{{sellerData.description}} / {{sellerData.deliveryTime}}分钟送达</p>
         </div>
         <div class="reduction">
           <div class="icon decrease"></div>
@@ -23,17 +23,18 @@
     </div>
     <div class="announcement" @click="showDialog">
       <div class="bulletin"></div>
-      <p>粥品香坊其烹饪粥料的秘方源于中国千年古法，再融合现代的烹饪技术</p>
+      <p>{{sellerData.bulletin}}</p>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
     <transition name="fade">
-      <discount-detail v-show="showDetail" @closeDialog="closeDialog"></discount-detail>
+      <discount-detail v-show="showDetail" @closeDialog="closeDialog" :sellerData="sellerData"></discount-detail>
     </transition>
   </div>
 </template>
 
 <script>
 import DiscountDetail from './discountDetail'
+import {mapState} from 'vuex'
 const objBody = document.getElementsByTagName('body')[0]
 export default {
   name: 'topper',
@@ -42,10 +43,21 @@ export default {
       showDetail: false
     }
   },
+  computed: {
+    ...mapState({
+      sellerData: 'sellerData'
+    })
+  },
   components: {
     DiscountDetail
   },
+  mounted () {
+    this.initData()
+  },
   methods: {
+    initData () {
+      this.$store.dispatch('initSeller', this)
+    },
     showDialog () {
       this.showDetail = true
       objBody.style.height = '100%'
